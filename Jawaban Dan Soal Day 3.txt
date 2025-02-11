@@ -1,0 +1,54 @@
+-- Menggunakan database Sakila
+
+-- 1. Jumlah Rental per Pelanggan: Cari jumlah rental yang dilakukan oleh setiap pelanggan. 
+-- Tampilkan nama depan (first_name), nama belakang (last_name), dan total jumlah rental untuk setiap pelanggan. 
+-- Urutkan hasil berdasarkan jumlah rental dari yang terbesar.
+
+SELECT c.first_name, c.last_name, COUNT(r.rental_id) AS total_rentals
+FROM customer c
+JOIN rental r ON c.customer_id = r.customer_id
+GROUP BY c.customer_id
+ORDER BY total_rentals DESC;
+
+-- 2. Pendapatan per Film: Hitung total pendapatan (amount) yang diperoleh dari setiap film. 
+-- Tampilkan judul film (title) dan total pendapatannya. Urutkan hasil berdasarkan pendapatan dari yang tertinggi.
+
+SELECT f.title, SUM(p.amount) AS total_revenue
+FROM film f
+JOIN inventory i ON f.film_id = i.film_id
+JOIN rental r ON i.inventory_id = r.inventory_id
+JOIN payment p ON r.rental_id = p.rental_id
+GROUP BY f.film_id, f.title
+ORDER BY total_revenue DESC;
+
+
+-- 3. Total Durasi Rental Berdasarkan Kategori Film: Tampilkan nama kategori (name) 
+-- dan total durasi rental (dalam hari) dari semua film dalam kategori tersebut. Urutkan hasil berdasarkan total durasi rental dari yang tertinggi.
+
+SELECT c.name AS category, SUM(DATEDIFF(r.return_date, r.rental_date)) AS total_rental_days
+FROM category c
+JOIN film_category fc ON c.category_id = fc.category_id
+JOIN film f ON fc.film_id = f.film_id
+JOIN inventory i ON f.film_id = i.film_id
+JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY c.category_id, c.name
+ORDER BY total_rental_days DESC;
+
+-- 4. Jumlah Pelanggan per Kota: Hitung jumlah pelanggan yang berasal dari setiap kota (city).
+-- Tampilkan nama kota dan jumlah pelanggan dari kota tersebut. Urutkan hasil berdasarkan jumlah pelanggan dari yang terbanyak.
+
+SELECT ci.city, COUNT(c.customer_id) AS total_customers
+FROM customer c
+JOIN address a ON c.address_id = a.address_id
+JOIN city ci ON a.city_id = ci.city_id
+GROUP BY ci.city_id, ci.city
+ORDER BY total_customers DESC;
+
+-- 5. Rata-rata Rating Film Berdasarkan Bahasa: Cari rata-rata rating (rating) dari film berdasarkan bahasa (name). 
+-- Tampilkan nama bahasa dan rata-rata rating untuk film-film dalam bahasa tersebut.
+
+SELECT l.name AS language, AVG(f.rating) AS avg_rating
+FROM film f
+JOIN language l ON f.language_id = l.language_id
+GROUP BY l.language_id, l.name
+ORDER BY avg_rating DESC;

@@ -1,0 +1,20 @@
+with customer_from_escobar_film_rental as (select f.title
+from payment p
+left join customer c on c.customer_id = p.customer_id
+left join rental r on r.rental_id = p.rental_id
+left join address a on c.address_id = a.address_id
+left join city city on city.city_id = a.city_id
+left join inventory i on i.inventory_id=r.inventory_id
+left join film f on f.film_id = i.film_id
+where city.city="Escobar")
+
+select f.title, sum(p.amount) as revenue_film, count(distinct(r.rental_id)) as total_rent
+from payment p
+left join customer c on c.customer_id = p.customer_id
+left join rental r on r.rental_id = p.rental_id
+left join address a on c.address_id = a.address_id
+left join city city on city.city_id = a.city_id
+left join inventory i on i.inventory_id=r.inventory_id
+left join film f on f.film_id = i.film_id
+where f.title in (select title from customer_from_escobar_film_rental)
+group by f.title;
