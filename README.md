@@ -7,4 +7,6 @@ Ini merupakan repository untuk men-store data-data pembelajaran kamu! Dimulai da
 - Module 3 - Machine Learning
 
 
-Silahkan dipilih / melihat repository yang telah kamu buat. Terima Kasih 🙏, Semoga hari mu menyenangkan, Tuhan Yesus Memberkatimu disetiap langkah Mu . Amin 🙏
+Silahkan dipilih / melihat repository yang telah kamu buat. Terima Kasih 🙏
+
+# Semoga hari mu menyenangkan, Tuhan Yesus Memberkatimu disetiap langkah Mu . Amin 🙏
