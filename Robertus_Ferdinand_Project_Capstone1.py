@@ -448,8 +448,6 @@ def menu_utama():
         except Exception as e:
             print(f"{e}")
             break
-
 menu_utama()
-# masih ada bug ketika pada menu_buku -> pilih 3 -> keyboard interupt di menu_utama masih kembali ke menu_buku lagi
             
 
