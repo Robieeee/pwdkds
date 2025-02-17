@@ -1,0 +1,27 @@
+select t.code as transact_code, t.invoice_created_at,t.created_at as transaction_created_date, t.user_code, t.subtotal_amount, t.total_discount_amount, t.final_price, t.receivable_amount, t.created_by,
+ts.label as transaction_status, t.invoice_code, t.order_confirmation_code, pt.quantity, ph.label as program_name, b.label as branch_name, pc.label as program_category, sm.label as study_method, ss.label as study_schedule,
+p.program_start_date, p.program_end_date, p.program_start_time, p.program_end_time, p.program_days, u.referral_source, u.user_email,u.user_city, tq.registration_reason, tq.time_knowing_program, tq.choosing_reason, 
+ tq.content_source, tq.other_bootcamps, tq.first_time_knowledge, tq.informative_website, tq.admission_score
+from transact t
+left join transactstatus ts
+on ts.code = t.transaction_status_code
+left join programtransact pt
+on t.code = pt.transaction_code
+left join program p
+on p.code = pt.program_code
+left join branch b
+on b.code = p.branch_code
+left join programheader ph
+on ph.code = p.program_header_code
+left join programcategory pc
+on pc.code = ph.program_category_code
+left join studymethod sm
+on sm.code = p.study_method_code
+left join studyschedule ss
+on ss.code = p.study_schedule_code
+left join student s
+on pt.code = s.program_transact_code
+left join user u
+on u.code = s.user_code
+left join transactquestionnaires tq
+on t.code = tq.code
