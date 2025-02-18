@@ -249,14 +249,4 @@
 # print(my_list)
 
 
-x = 10
-def example_function():
-    global x
-    x = 20
-    print("X Will be ?", x)
-print("X Will be?", x)
-example_function()
-print("X Will be:", x)
-
-
 
