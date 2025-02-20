@@ -1,0 +1,5 @@
+Kata Kunci Hari ini:
+-> Histogram: Untuk liat persebaran data bagus untuk liat sekilas dan ditampilkan untuk khalayak yang umum
+-> Boxplot: Untuk persebaran data tapi lebih detail, lebih nyaman untuk melihat outliers
+-> lineplot: Untuk melihat trend data kata kunci varibel dengaan Waktu.
+-> scatterplot: untuk melihat korelasi antar 2 variable numerik, dan jika ingin 3 korelasi bisa gabung dengan 1 categorical data sebagai warna
