@@ -257,7 +257,6 @@ def tambah_buku():
         except Exception as e:
             print(f"{e}")
 
-
 def tambah_buku_menu():
     if gudang_buku:
         while True:
